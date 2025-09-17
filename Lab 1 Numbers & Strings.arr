@@ -18,19 +18,21 @@ price
 "blue" + "red"
 
 #3.1
-r = rectangle(20, 60, "solid", "black")
+black-rectangle = rectangle(25, 65, "solid", "black")
 
 #3.2
-c1 = circle(10, "solid", "red")
-c2 = circle(10, "solid", "yellow")
-c3 = circle(10, "solid", "green")
-stack = above(c1, above(c2, c3))
-overlay(stack, r)
+red-circle = circle(10, "solid", "red")
+yellow-circle = circle(10, "solid", "yellow")
+green-circle = circle(10, "solid", "green")
+i1 = above(red-circle, yellow-circle)
+i2 = above(i1, green-circle)
+traffic-light = underlay-align("center", "middle", black-rectangle, i2)
+traffic-light
 
 #3.3
-r2 = rectangle(5, 15, "outline", "black")
-traffic_light = above(r, r2)
-traffic_light
+rectangle2 = rectangle(5, 15, "outline", "black")
+traffic-light2 = above(traffic-light, rectangle2)
+traffic-light2
 
 #4.1
 rectangle(50, 20, "solid", "black")
@@ -39,19 +41,19 @@ rectangle(50, 20, "solid", "black")
 circle(30, "solid", "red")
 
 #5.1
-b = rectangle(100, 60, "solid", "pink")
-c = circle(25, "solid", "gray")
-f1 = overlay(c, b)
-s = star(15, "solid", "white")
-s2 = star(24, "solid", "purple")
-f2 = overlay(s, s2)
-flag = overlay(f2, f1)
+pink-rectangle = rectangle(100, 60, "solid", "pink")
+gray-circle = circle(25, "solid", "gray")
+flag1 = overlay(gray-circle, pink-rectangle)
+white-star = star(15, "solid", "white")
+purple-star = star(24, "solid", "purple")
+flag2 = overlay(white-star, purple-star)
+flag = overlay(flag2, flag1)
 flag
 
 #5.2
-shield = rotate(45, square(100, "solid", "gray"))
-ec = circle(40, "solid", "pink")
-es = star(20, "solid", "white")
-ce = overlay(es, ec)
-shield_design = overlay(ce, shield)
-shield_design
+gray-square = rotate(45, square(100, "solid", "gray"))
+pink-circle = circle(40, "solid", "pink")
+yellow-star = star(20, "solid", "yellow")
+shield1 = overlay(yellow-star, pink-circle)
+shield = overlay(shield1, gray-square)
+shield
