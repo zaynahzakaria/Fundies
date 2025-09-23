@@ -1,0 +1,50 @@
+include file("support.arr") as support
+
+s1 = "hello"
+s2 = "one"
+s3 = "fundamentals"
+
+support.encryptor1(s1)
+support.encryptor1(s2)
+support.encryptor1(s3)
+
+
+
+
+
+
+# encryptor function 1
+fun support-encryptor(s1 :: String) -> String:
+  doc: "returns new encrypted string which is the second letter of the inputted string"
+  string-substring(s1, 1, 2)
+end 
+
+# encryptor tester function checks if replication matches original for all possible inputs
+check:
+  support-encryptor("northeasterm") is "o"
+  support-encryptor("fundamentals") is "u"
+  support-encryptor("lab") is "a"
+end
+
+# calling support-encryptor with variety of sample strings
+support-encryptor("one")
+support-encryptor("hello")
+support-encryptor("london")
+
+# my recreation of the function
+fun my-encryptor1(m :: String) -> Number:
+  doc: "returns new encrypted number which is the length of the inputted string"
+  string-length(m)
+end 
+
+# calling my-encryptor with variety of sample strings
+my-encryptor1("one")
+my-encryptor1("hello")
+my-encryptor1("london")
+
+# encryptor tester for my function
+  check:
+  my-encryptor1("northeastern") is 12
+  my-encryptor1("fundamentals") is 12
+  my-encryptor1("lab") is 3
+end
