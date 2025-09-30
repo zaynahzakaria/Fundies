@@ -1,4 +1,7 @@
 use context dcic2024
+include csv
+include data-source 
+
 # Problem 1
 fun leap-year-calculation(year :: Number) -> Boolean:
   doc: "returns true when the year is divisible by 4 and is therefore a leap year, and false when it is not."
@@ -73,9 +76,20 @@ mars = planets.row-n(3)["distance"]
 # 1 Upload the above CSV file (extract the CSV file from the .zip file first) inside VS Code in GitHub 2 Load the file in Pyret and assign it to a variable named something. 3 Use the sanitizer to convert the columns with numeric data into numbers 4 Check the total number of rows inside the table using Pyret 5 Find the median rate in the dataset 6 Find the mode for the rate 7 Order the rate column in both ascending and descending order to find the maximum and minimum values
 
 # Problem 5
-include csv
-include data-source 
 something = load-table:
-  rows, coulmns, others
+  year, day, month, rate
   source: csv-table-file("boe_rates.csv", default-options)
-    en
+  sanitize year using num-sanitizer
+  sanitize day using num-sanitizer
+  sanitize rate using num-sanitizer
+  end
+count-rows = something.length()
+median-rate = median(something, "rate")
+mode-rate = modes(something, "rate")
+ordered-ascending = order something:
+  rate ascending
+end
+ordered-descending = order something:
+  rate descending
+end
+# loads table into pyret and is assigned to a variable named something. columns with numeric data are converted into numbers using the sanitizer, the median and mode of the rate column is returned, and the rate column is ordered in both ascending and descending order
