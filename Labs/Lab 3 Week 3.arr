@@ -73,8 +73,6 @@ end
 mars = planets.row-n(3)["distance"]
 # this function creates a table including 8 planets and their distances from the sun in astronomical units. it also extracts row 3 and assigns it to the variable mars and then outputs the distance from the variable
 
-# 1 Upload the above CSV file (extract the CSV file from the .zip file first) inside VS Code in GitHub 2 Load the file in Pyret and assign it to a variable named something. 3 Use the sanitizer to convert the columns with numeric data into numbers 4 Check the total number of rows inside the table using Pyret 5 Find the median rate in the dataset 6 Find the mode for the rate 7 Order the rate column in both ascending and descending order to find the maximum and minimum values
-
 # Problem 5
 something = load-table:
   year, day, month, rate
