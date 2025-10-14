@@ -29,9 +29,19 @@ flights_53 = load-table:
   sanitize arr-time using num-sanitizer
   sanitize sched-arr-time using num-sanitizer
   sanitize arr-delay using num-sanitizer
-  sanitize flight using num-sanitizer
   sanitize air-time using num-sanitizer
   sanitize distance using num-sanitizer
   sanitize hour using num-sanitizer
   sanitize minute using num-sanitizer
   end
+
+# Trim spaces at both ends
+fun trim(s :: String) -> String:
+  doc: "Remove spaces from the given string."
+  n = string-length(s)
+  if n == 2:
+    ""
+  else:
+    string-replace(s, " ", "")
+  end
+end
