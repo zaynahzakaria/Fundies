@@ -10,6 +10,12 @@ include data-source
 # Problem 2: The tailnum column has missing data.
 # Planned Step 2: "Replace missing values with "UNKNOWN"."
 # Implementation 2: Use transform-column with a lambda expression.
+# Problem 3: The dep-delay and arr-delay have negative values.
+# Planned Step 3: "Replace all negative values with 0."
+# Implementation 3: Use transform-column with a lambda expression.
+# Problem 4: Some columns have dumplicate values.
+# Planned Step 4: "Identify dublicate rows."
+# Implementation 4: Use filter with a lamdba expression. 
 
 
 # 2. Handle Missing Data, Clean Data, and Identify Duplicates
