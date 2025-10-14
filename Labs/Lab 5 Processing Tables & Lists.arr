@@ -1,9 +1,31 @@
 use context dcic2024
+include image
+include csv
+include data-source
 
 # 1. Task Plan
-# Table: The table is made up of customer's details when ordering t-shirts on a website.
-# Problem: The discount column has inconsistent formatting (upper/lowercase errors, spaces, writing none as a discount code).
-# Planned Step: "Clean the discount column by converting text to lowercase, getting rid of spaces, and changing none to have no value"
-# Implementation: Use string-replace, string-to-lower, and string-to-numbner to set the string "none" as none so no value appears.
+# Problem 1: The carrier column has inconsistent formatting (upper/lowercase errors & spaces).
+# Planned Step 1: "Clean the carrier column by converting text to uppercase & getting rid of spaces."
+# Implementation 1: Use string-replace & string-to-lower.
+# Problem 2: The tailnum column has missing data.
+# Planned Step 2: "Replace missing values with "UNKNOWN"."
+# Implementation 2: Use transform-column with a lambda expression.
+
 
 # 2. Handle Missing Data, Clean Data, and Identify Duplicates
+flights_53 = load-table:
+  rownames, dep-time, sched-dep-time, dep-delay, arr-time, sched-arr-time, arr-delay, carrier, flight, tailnum, origin, dest, air-time, distance, hour, minute, time-hour
+  source: csv-table-file("flights_sample53.csv", default-options)
+  sanitize rownames using num-sanitizer
+  sanitize dep-time using num-sanitizer
+  sanitize sched-dep-time using num-sanitizer
+  sanitize dep-delay using num-sanitizer
+  sanitize arr-time using num-sanitizer
+  sanitize sched-arr-time using num-sanitizer
+  sanitize arr-delay using num-sanitizer
+  sanitize flight using num-sanitizer
+  sanitize air-time using num-sanitizer
+  sanitize distance using num-sanitizer
+  sanitize hour using num-sanitizer
+  sanitize minute using num-sanitizer
+  end
