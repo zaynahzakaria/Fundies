@@ -72,3 +72,39 @@ fun my-alternating(l):
 end
       
       
+fun my-alternating1(l):
+my-a1(true, l)
+end
+
+fun my-a1(keep, l):
+cases (List) l:
+  | empty => empty
+  | link(f, r) =>
+    ask:
+      | keep then: link(f, my-a1(false, r))
+      | otherwise: my-a1(true, r)
+    end
+end 
+end 
+
+
+
+fun skip-elements(l, skip):
+s-e(0, skip, l)
+where:
+skip-emelemts([list: 1, 2, 3, 4, 5], 2) is [list: 1, 4]
+end
+
+fun s-e(current-element, skip, l)
+spy:
+  current-element
+end
+cases (List) l:
+  | empty => empty
+  | link(f, r) => 
+    ask: 
+      | current-elemnt == skip then: s-e(0, skip, r)
+      | otherwise: link(f, s-e(current-element + 1, skip, r))
+    end
+end
+end 
