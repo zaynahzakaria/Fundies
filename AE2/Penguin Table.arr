@@ -30,16 +30,23 @@ end
 body-mass-kg 
 
 # transformation 
+fun add-weight(r :: Row) -> String:
+  if r["body_mass_g"] < 4000:
+    "light"
+  else if r["body_mass_g"] < 5000:
+    "medium"
+  else:
+    "heavy"
+  end
+end
+check:
+  add-weight(penguins-table.row-n(1)) is "light"
+  add-weight(penguins-table.row-n(6)) is "medium"
+  add-weight(penguins-table.row-n(169)) is "heavy"
+end  
+
 weight-categorised =
-  build-column(penguins-table, "weight", lam(r):
-    if r["body_mass_g"] < 4000:
-      "light"
-    else if r["body_mass_g"] < 5000:
-      "medium"
-    else:
-      "heavy"
-    end
-  end)
+  build-column(penguins-table, "weight", add-weight)
 
 weight-categorised
 
