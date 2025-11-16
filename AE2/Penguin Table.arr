@@ -1,4 +1,4 @@
-use context starter2024
+use context dcic2024
 include csv
 include data-source
 import tables as T
@@ -23,6 +23,20 @@ body-mass-kg = body-mass.map(lam(m): m / 1000 end)
   
 body-mass-kg 
 
+# transformation 
+weight-categorised =
+  build-column(penguins-table, "weight", lam(r):
+    if r["body_mass_g"] < 4000:
+      "light"
+    else if r["body_mass_g"] < 5000:
+      "medium"
+    else:
+      "heavy"
+    end
+  end)
+
+weight-categorised
+
 # selection 
 
 penguins-after-2007 =
@@ -43,12 +57,12 @@ fun total-flipper(len-list :: List<Number>) -> Number block:
 end
 
 fun avg-flipper(len-list :: List<Number>) -> Number block:
-  var count = 0
+  var count1 = 0
   for each(n from len-list):
-    count := count + 1
+    count1 := count1 + 1
   end
 
-  total-flipper(len-list) / count
+  total-flipper(len-list) / count1
 end
 
 flipper-list = penguins-table.column("flipper_length_mm")
@@ -57,17 +71,3 @@ average-flipper-length = avg-flipper(flipper-list)
 flipper-list
 
 average-flipper-length
-
-# transformation 
-weight-categorised =
-  build-column(penguins-table, "weight", lam(r):
-    if r["body_mass_g"] < 4000:
-      "light"
-    else if r["body_mass_g"] < 5000:
-      "medium"
-    else:
-      "heavy"
-    end
-  end)
-
-weight-categorised
