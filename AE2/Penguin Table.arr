@@ -33,3 +33,29 @@ penguins-after-2007 =
   end)
 
 penguins-after-2007
+
+# accumulation 
+
+fun total-flipper(len-list :: List<Number>) -> Number block:
+  var total = 0
+  for each(n from len-list):
+    total := total + n
+  end
+  total
+end
+
+fun avg-flipper(len-list :: List<Number>) -> Number block:
+  var count = 0
+  for each(n from len-list):
+    count := count + 1
+  end
+
+  total-flipper(len-list) / count
+end
+
+flipper-list = penguins-table.column("flipper_length_mm")
+average-flipper-length = avg-flipper(flipper-list)
+
+flipper-list
+
+average-flipper-length
