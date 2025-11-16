@@ -19,8 +19,14 @@ penguins-table
 body-mass = extract body_mass_g from penguins-table 
 end
   
-body-mass-kg = body-mass.map(lam(m): m / 1000 end)
-  
+fun body-mass-kg(m :: Number) -> Number:
+  m / 1000
+end
+check:
+  map(body-mass-kg, [list: 2700, 4600, 6000])
+    is [list: 2.7, 4.6, 6]
+end
+
 body-mass-kg 
 
 # transformation 
