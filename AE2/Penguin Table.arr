@@ -2,21 +2,34 @@ use context starter2024
 include csv
 include data-source
 
-penguins-table = load-table:  species, island, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g, sex,year
-  source: csv-table-file("penguins.csv", default-options)
-  sanitize year using num-sanitizer 
+penguins-table = load-table:  num, species, island, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g, sex, year
+  source: csv-table-file("penguins 3.csv", default-options)
+  sanitize num using num-sanitizer
+  sanitize bill_length_mm using num-sanitizer
+  sanitize bill_depth_mm using num-sanitizer
+  sanitize flipper_length_mm using num-sanitizer
+  sanitize body_mass_g using num-sanitizer
+  sanitize year using num-sanitizer
 end
 
 penguins-table
 
-# the bill length, bill depth, flipper length, and body mass columns should be sanitized using num-sanitizer but contain NA, only year was correctly sanitized 
+# scalar processing
+body-mass = extract body_mass_g from penguins-table 
+end
+  
+body-mass-kg = body-mass.map(lam(m): m / 1000 end)
+  
+body-mass-kg 
+
+# transformation 
 
 
-penguins-clean =
+# selection 
+
+penguins-after-2007 =
   penguins-table.filter(lam(r):
-      numbers-only(r["body_mass_g"]) and
-      numbers-only(r["flipper_length_mm"]) and
-      numbers-only(r["year"])
+    r["year"] > 2007
   end)
 
-penguins-clean
+penguins-after-2007
