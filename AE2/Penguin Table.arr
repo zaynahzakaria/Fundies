@@ -1,6 +1,7 @@
 use context starter2024
 include csv
 include data-source
+import tables as T
 
 penguins-table = load-table:  num, species, island, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g, sex, year
   source: csv-table-file("penguins 3.csv", default-options)
@@ -21,9 +22,6 @@ end
 body-mass-kg = body-mass.map(lam(m): m / 1000 end)
   
 body-mass-kg 
-
-# transformation 
-
 
 # selection 
 
@@ -59,3 +57,17 @@ average-flipper-length = avg-flipper(flipper-list)
 flipper-list
 
 average-flipper-length
+
+# transformation 
+weight-categorised =
+  build-column(penguins-table, "weight", lam(r):
+    if r["body_mass_g"] < 4000:
+      "light"
+    else if r["body_mass_g"] < 5000:
+      "medium"
+    else:
+      "heavy"
+    end
+  end)
+
+weight-categorised
