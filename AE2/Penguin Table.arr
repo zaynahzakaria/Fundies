@@ -52,10 +52,18 @@ weight-categorised
 
 # selection 
 
+fun born-after-2007(r :: Row) -> Boolean:
+  r["year"] > 2007
+end
+
+check:
+  born-after-2007(penguins-table.row-n(53)) is true 
+  born-after-2007(penguins-table.row-n(1)) is false
+  born-after-2007(penguins-table.row-n(105)) is true
+end
+
 penguins-after-2007 =
-  penguins-table.filter(lam(r):
-    r["year"] > 2007
-  end)
+  penguins-table.filter(born-after-2007)
 
 penguins-after-2007
 
