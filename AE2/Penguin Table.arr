@@ -82,8 +82,12 @@ fun avg-flipper(len-list :: List<Number>) -> Number block:
   for each(n from len-list):
     count1 := count1 + 1
   end
-
   total-flipper(len-list) / count1
+end
+
+check:
+  total-flipper([list: 176, 190, 210]) is 576
+  avg-flipper([list: 180, 190, 200]) is 192
 end
 
 flipper-list = penguins-table.column("flipper_length_mm")
