@@ -62,7 +62,7 @@ weight-categorised
 # Selection 
 
 fun gentoo-and-after-2007(r :: Row) -> Boolean:
-  doc: "takes a row from the penguins table and returns true only if the penguin was born after 2007 and belongs to the genoo species"
+  doc: "takes a row from the penguins table and returns true only if the penguin was born after 2007 and belongs to the gentoo species"
   (r["year"] > 2007) and (r["species"] == "Gentoo")
 end
 
