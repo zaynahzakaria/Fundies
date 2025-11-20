@@ -61,23 +61,24 @@ weight-categorised
 
 # Selection 
 
-fun born-after-2007(r :: Row) -> Boolean:
-  doc: "takes a row from the penguins table and returns true if the penguin was born after 2007, and false otherwise"
-  r["year"] > 2007
+fun gentoo-and-after-2007(r :: Row) -> Boolean:
+  doc: "takes a row from the penguins table and returns true only if the penguin was born after 2007 and belongs to the genoo species"
+  (r["year"] > 2007) and (r["species"] == "Gentoo")
 end
 
-# testing the born-after-2007 function with rows that contain different birth years (2008, 2007, and 2009)
+# tests the combined condition on rows with different species and years
 check:
-  born-after-2007(penguins-table.row-n(53)) is true 
-  born-after-2007(penguins-table.row-n(1)) is false
-  born-after-2007(penguins-table.row-n(105)) is true
+  gentoo-and-after-2007(penguins-table.row-n(49)) is false
+  gentoo-and-after-2007(penguins-table.row-n(270)) is false
+  gentoo-and-after-2007(penguins-table.row-n(185)) is true
+  gentoo-and-after-2007(penguins-table.row-n(326)) is false
 end
 
-#  filters the penguins table to keep only the rows for penguins born after 2007, producing a new table
-penguins-after-2007 =
-  penguins-table.filter(born-after-2007)
+# creates a new table with only gentoo penguins born after 2007
+gentoo-after-2007 =
+  penguins-table.filter(gentoo-and-after-2007)
 
-penguins-after-2007
+gentoo-after-2007
 
 # Accumulation 
 
